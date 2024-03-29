@@ -43,7 +43,7 @@ def remove_prefix(text, prefix):
     return text[text.startswith(prefix) and len(prefix):]
 
 def execute_cli(command):
-    sb = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+    sb = subprocess.Popen(command, shell=False, stdout=subprocess.PIPE)
     return sb.stdout.read().decode("utf-8");
 
 if __name__ == '__main__':
