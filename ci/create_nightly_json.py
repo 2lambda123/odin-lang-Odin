@@ -4,6 +4,7 @@ import json
 import datetime
 import urllib.parse
 import sys
+from security import safe_command
 
 def main():
     files_by_date = {}
@@ -43,7 +44,7 @@ def remove_prefix(text, prefix):
     return text[text.startswith(prefix) and len(prefix):]
 
 def execute_cli(command):
-    sb = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+    sb = safe_command.run(subprocess.Popen, command, shell=True, stdout=subprocess.PIPE)
     return sb.stdout.read().decode("utf-8");
 
 if __name__ == '__main__':
