@@ -583,7 +583,7 @@ def parse_structs(f):
             ffields.append(tuple([n, t, comment]))
             prev_name = fname
 
-        max_len = max([len(n) for n, _, _ in ffields], default=0)
+        max_len = max(len(n) for n, _, _ in ffields)
 
         for n, t, comment in ffields:
             k = max_len-len(n)+len(t)
