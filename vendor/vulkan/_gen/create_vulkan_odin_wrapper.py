@@ -104,8 +104,8 @@ def convert_type(t, prev_name, curr_name):
             ttype = t[:len(t)-1]
             elem = convert_type(ttype, prev_name, curr_name)
 
-        if curr_name.endswith("s") or curr_name.endswith("Table"):
-            if prev_name.endswith("Count") or prev_name.endswith("Counts"):
+        if curr_name.endswith(("s", "Table")):
+            if prev_name.endswith(("Count", "Counts")):
                 pointer = "[^]"
             elif curr_name.startswith("pp"):
                 if elem.startswith("[^]"):
@@ -604,7 +604,7 @@ def parse_structs(f):
         name = name.replace("FlagBits", "Flag")
         _type = _type.replace("FlagBits", "Flag")
 
-        if name.endswith("Flag2") or name.endswith("Flags2"):
+        if name.endswith(("Flag2", "Flags2")):
             continue
 
         aliases.append((name, _type))
